@@ -1,0 +1,24 @@
+# Creating Server using http module.
+//module include in node
+import http from 'http';
+
+const PORT = process.env.PORT;
+
+//req - request object 
+//res - response object
+//create a server object
+const server = http.createServer((req, res) => {
+    console.log(req.url);
+    console.log(req.headers);
+    console.log(req.method)
+	// res.setHeader('Content-Type', 'text/plain');
+    // res.statusCode = 404
+    res.writeHead(200, {'Content-Type': 'text/html'})//write response
+    //sends res and ends the connection
+	res.end('<h1>Hello World</h1>');
+});
+
+// Listen on port 3000
+server.listen(3000, () => {
+	console.log(`Server is running on http://localhost:${PORT}`);
+})
